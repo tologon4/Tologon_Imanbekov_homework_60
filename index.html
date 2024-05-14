@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Work</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <header>
+        <nav class="navbar bg-body-tertiary py-3">
+            <div class="container-fluid">
+                <button class="btn btn-success border-0 px-5 " type="button" data-bs-toggle="modal"
+                    data-bs-target="#subscribe"> Зарегистрироваться </button>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+    <div class="modal fade modal-dialog modal-dialog-centered" id="subscribe" data-bs-backdrop="static"
+        data-bs-keyboard="true" tabindex="-1">
+        <div class="modal-dialog ">
+            <div class="modal-content border-4 ">
+                <div class="modal-header border border-0">
+                    <h5 class="modal-title mx-auto" id="form-title">Зарегистрироваться</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="user-name" placeholder="Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="password" placeholder="Пароль" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="confirPassword" placeholder="Повторите пароль"
+                            required>
+                    </div>
+                    <div class="mb-3 error-div">
+
+                    </div>
+                </div>
+                <div class="modal-footer border border-0">
+                    <button id="subButton" class="btn btn-primary mx-auto px-5 py-2 text-white">Готово!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const myModal = document.getElementById('subscribe')
+        const myInput = document.getElementById('user-name')
+
+        myModal.addEventListener('shown.bs.modal', () => {
+            myInput.focus()
+        })
+
+
+
+        $('#subButton').on('click', function () {
+
+            var email = $('#email').val();
+            var password = $('#password').val();
+            var confirmPassword = $('#confirPassword').val();
+
+            if (password !== confirmPassword || password.length < 6) {
+                $('#password').css('border', '1px solid red');
+                $('#configPassword').css('border', '1px solid red');
+                $('.error-div').html(
+                    '<span class="text-danger">Пароли должны совпадать или Длина пароли должна быть не менее 6 символов!</span>'
+                )
+            } else {
+                $('.error-div').find('span').remove();
+                $('#subscribe').find('div').remove();
+                $('#subscribe').html(
+                    '<div class="text-center bg-white text-success"><iclass="fas fa-check display-2"></iclass=><h3 class="mt-3">Добр пожаловать</h3></div>'
+                );
+                var user = {
+                    email: email,
+                    password: password,
+                    confirmPassword: confirmPassword
+                };
+
+                console.log(user);
+
+            }
+        });
+    </script>
+
+</body>
+
+</html>
